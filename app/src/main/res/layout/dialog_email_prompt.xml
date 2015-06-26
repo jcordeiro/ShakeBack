@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/shakeback_email_prompt_dialog"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:orientation="vertical"
+    android:padding="@dimen/activity_horizontal_margin">
+
+    <ImageView
+        android:id="@+id/shakeback_dialog_icon"
+        android:layout_width="wrap_content"
+        android:layout_height="60dp"
+        android:layout_alignParentTop="true"
+        android:layout_gravity="center_horizontal" />
+
+    <TextView
+        android:id="@+id/shakeback_dialog_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shakeback_dialog_icon"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="center"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <TextView
+        android:id="@+id/shakeback_dialog_message"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shakeback_dialog_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/activity_vertical_margin"
+        android:gravity="start"
+        android:padding="8dp"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/shakeback_dialog_message"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/shakeback_send_button"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:text="Send Feedback"
+            android:textAppearance="?android:attr/textAppearanceButton" />
+
+        <Button
+            android:id="@+id/shakeback_dismiss_button"
+            style="?android:borderlessButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_weight="1"
+            android:text="Dismiss"
+            android:textAppearance="?android:attr/textAppearanceButton" />
+    </LinearLayout>
+</RelativeLayout>
