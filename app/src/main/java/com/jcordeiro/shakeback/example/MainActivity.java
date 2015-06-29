@@ -1,6 +1,5 @@
 package com.jcordeiro.shakeback.example;
 
-import android.app.Activity;
 import android.os.Bundle;
 
 import com.jcordeiro.library.ShakeBack;
