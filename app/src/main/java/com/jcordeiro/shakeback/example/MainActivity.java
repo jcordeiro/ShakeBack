@@ -1,5 +1,6 @@
 package com.jcordeiro.shakeback.example;
 
+import android.app.Activity;
 import android.os.Bundle;
 
 import com.jcordeiro.library.ShakeBack;
@@ -16,6 +17,6 @@ public class MainActivity extends ShakeBackActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ShakeBack.initialize(this, "contact@joncordeiro.com", "Feedback");
-     }
+        ShakeBack.initialize(this, "github@joncordeiro.com", "Feedback");
+    }
 }
