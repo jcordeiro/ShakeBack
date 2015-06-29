@@ -1,10 +1,10 @@
-package com.jcordeiro.shakeback;
+package com.jcordeiro.library;
 
 import android.app.Activity;
 import android.os.Bundle;
 
 /**
- * Created by Jon Cordeiro (http://www.github.com/jcordeiro) on 22/06/15.
+ * Written by Jon Cordeiro (http://www.github.com/jcordeiro) on 22/06/15.
  */
 public class ShakeBackActivity extends Activity {
 

@@ -1,4 +1,4 @@
-package com.jcordeiro.shakeback;
+package com.jcordeiro.library;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -17,7 +17,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 /**
- * Created by Jon Cordeiro (http://www.github.com/jcordeiro) on 22/06/15.
+ * Written by Jon Cordeiro (http://www.github.com/jcordeiro) on 22/06/15.
  */
 public class ShakeBack {
 
@@ -27,8 +27,6 @@ public class ShakeBack {
     private static Dialog dialog;
 
     private static boolean isDialogUp;
-
-    private String PACKAGE_NAME;
     private static Context context;
 
     /* Shake acceleration values */
@@ -36,29 +34,22 @@ public class ShakeBack {
     private static float currentAcceleration;
     private static float lastAcceleration;
 
-    /* Shake sensitivity thresholds */
-    public enum ShakeSensitivity {
-        EASY,
-        NORMAL,
-        HARD
-    }
-
-    final public int SHAKE_THRESHOLD_EASY = 6;
-    final public int SHAKE_THRESHOLD_NORMAL = 12;
-    final public int SHAKE_THRESHOLD_HARD = 18;
+    /* Handles the shake event */
+    private static SensorEventListener sensorListener;
+    final private int SHAKE_THRESHOLD_EASY = 6;
+    final private int SHAKE_THRESHOLD_NORMAL = 12;
+    final private int SHAKE_THRESHOLD_HARD = 18;
 
     /* Default settings */
     final private int SHAKE_THRESHOLD_DEFAULT = SHAKE_THRESHOLD_NORMAL;
-
     final private String FEEDBACK_EMAIL_ADDRESS_DEFAULT = "";
-    private String FEEDBACK_EMAIL_SUBJECT_DEFAULT = ""; // Not final. Value set in constructor below
-
     final private boolean VIBRATION_ENALBED_DEFAULT = false;
     final private int VIBRATION_DURATION_DEFAULT = 100;
-
-    final private int DIALOG_ICON_ID_DEFAULT = R.drawable.ic_phone_shake_grey;
+    final private int DIALOG_ICON_ID_DEFAULT = R.drawable.ic_phone_shake;
     final private String DIALOG_TITLE_DEFAULT = "Send feedback to developer?";
     final private String DIALOG_MESSAGE_DEFAULT = "By shaking the device you can send us some feedback and your thoughts about our app. Your feedback helps us improve the app and continue building a better experience for you";
+    private String PACKAGE_NAME;
+    private String FEEDBACK_EMAIL_SUBJECT_DEFAULT = ""; // Not final. Value set in constructor below
 
     /* Vibration settings */
     private boolean vibrationEnabled = VIBRATION_ENALBED_DEFAULT;
@@ -76,45 +67,11 @@ public class ShakeBack {
     private String dialogTitle = DIALOG_TITLE_DEFAULT;
     private String dialogMessage = DIALOG_MESSAGE_DEFAULT;
 
-    /* Handles the shake event */
-    private static SensorEventListener sensorListener;
-
-    /**
-     * Create a SensorEventListener to handle the shake events using the given context
-     */
-    public SensorEventListener createSensorListener(final Context newContext) {
-
-        return new SensorEventListener() {
-
-            public void onSensorChanged(SensorEvent event) {
-                float x = event.values[0];
-                float y = event.values[1];
-                float z = event.values[2];
-
-            /* Calculate acceleration */
-                lastAcceleration = currentAcceleration;
-                currentAcceleration = (float) Math.sqrt((double) (x * x + y * y + z * z));
-                float delta = currentAcceleration - lastAcceleration;
-                acceleration = (acceleration * 0.9f) + delta; // perform low-cut filter
-
-                if (acceleration > instance.shakeThreshold) {
-
-                /* Don't show the dialog if it's already on the screen */
-                    if (!isDialogUp) {
-                        displayEmailPrompt();
-
-                    /* Vibrates the devices if setting for vibration is enabled */
-                        if (instance.vibrationEnabled) {
-                            Vibrator v = (Vibrator) newContext.getSystemService(Context.VIBRATOR_SERVICE);
-                            v.vibrate(instance.vibrationDuration);
-                        }
-                    }
-                }
-            }
-
-            public void onAccuracyChanged(Sensor sensor, int accuracy) {
-            }
-        };
+    /* Shake sensitivity thresholds */
+    public enum ShakeSensitivity {
+        EASY,
+        NORMAL,
+        HARD
     }
 
     /* Default constructor */
@@ -254,6 +211,44 @@ public class ShakeBack {
 
         dialog.show();
         isDialogUp = true;
+    }
+
+    /**
+     * Create a SensorEventListener to handle the shake events using the given context
+     */
+    public SensorEventListener createSensorListener(final Context newContext) {
+
+        return new SensorEventListener() {
+
+            public void onSensorChanged(SensorEvent event) {
+                float x = event.values[0];
+                float y = event.values[1];
+                float z = event.values[2];
+
+                /* Calculate acceleration */
+                lastAcceleration = currentAcceleration;
+                currentAcceleration = (float) Math.sqrt((double) (x * x + y * y + z * z));
+                float delta = currentAcceleration - lastAcceleration;
+                acceleration = (acceleration * 0.9f) + delta; // perform low-cut filter
+
+                if (acceleration > instance.shakeThreshold) {
+
+                    /* Don't show the dialog if it's already on the screen */
+                    if (!isDialogUp) {
+                        displayEmailPrompt();
+
+                        /* Vibrates the devices if setting for vibration is enabled */
+                        if (instance.vibrationEnabled) {
+                            Vibrator v = (Vibrator) newContext.getSystemService(Context.VIBRATOR_SERVICE);
+                            v.vibrate(instance.vibrationDuration);
+                        }
+                    }
+                }
+            }
+
+            public void onAccuracyChanged(Sensor sensor, int accuracy) {
+            }
+        };
     }
 
     /**
