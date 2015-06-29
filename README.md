@@ -2,7 +2,7 @@
 
 ShakeBack is an Android library that you can add to your app to make it easy for your users to send you emails with their feedback by simply shaking their device.
 
-<img src="http://www.github.com/jcordeiro/screenshot" alt="ShakeBack screenshot of alert dialog" />
+<img src="https://raw.githubusercontent.com/jcordeiro/ShakeBack/master/screenshot.png" alt="ShakeBack screenshot of alert dialog" />
 
 ### Download
 
