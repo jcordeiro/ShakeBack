@@ -22,16 +22,15 @@ dependencies {
 
 ##### Maven
 ```
-<dependency>
-    <groupId>com.github.User</groupId>
-    <artifactId>Repo name</artifactId>
-    <version>Release tag</version>
-</dependency>
+<repository>
+     <id>jitpack.io</id>
+     <url>https://jitpack.io</url>
+</repository>
 
 <dependency>
-    <groupId>com.github.jcordeiro</groupId>
-    <artifactId>ShakeBack</artifactId>
-    <version>1.0</version>
+     <groupId>com.github.jcordeiro</groupId>
+     <artifactId>ShakeBack</artifactId>
+     <version>1.0</version>
 </dependency>
 ```
 
