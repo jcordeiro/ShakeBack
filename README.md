@@ -126,7 +126,7 @@ Also, please feel free to [send me an email](mailto:github@joncordeiro.com) or [
 
 
 ### LICENSE
-This source code is released under the GNU General Public License v2.0. Please check [LICENSE](http://www.github.com/jcordeiro/ShakeBack/LICENSE) for more details.
+This source code is released under the GNU General Public License v2.0. Please check [LICENSE](https://raw.githubusercontent.com/jcordeiro/ShakeBack/master/LICENSE) for more details.
 
 ```
 Copyright (C) 2015  Jon Cordeiro
